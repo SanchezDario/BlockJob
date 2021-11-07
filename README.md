@@ -34,7 +34,7 @@ Paso 1: Prerrequisitos
 
 6. Instale Rust en caso de querer realizar pruebas unitarias sobre el contrato 
 
-    yarn install --global near-cli
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
 Paso 2: Configuración de NEAR CLI
 -------------------------------
@@ -101,8 +101,12 @@ Dentro de la carpeta contract, utilice el siguiente comando para ejecutar las pr
     cargo test -- --nocapture
 
 
+Tareas pendientes
+-------------------------------
 
-  [create-near-app]: https://github.com/near/create-near-app
-  [NEAR accounts]: https://docs.near.org/docs/concepts/account
-  [NEAR Wallet]: https://wallet.testnet.near.org/
-  [near-cli]: https://github.com/near/near-cli
+* Limitar el acceso a ciertas funciones a partir de la categoría que los usuarios obtenga tras pasar un KYC
+* Desarrollar un contrato que bloquee los fondos y los derive a partir de los resultados de las votaciones
+* Desarrollar una estructura de mediación delimitada por plazos (está la estructura, basada en el estándar NEP 171, pero no se hace uso de ella)
+* Tentativamente, desarrollar una DAO y un token fungible propio de la plataforma buscando brindar la mayor descentralización posible
+* Desarrollar sitio web, aplicación movil e implementar una API
+* Definir una estrategia de marketing completa, de momento consiste en centrarse en nichos y se están pensando los incentivos que se darán para atraer usuario 
