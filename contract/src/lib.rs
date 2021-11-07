@@ -305,6 +305,7 @@ mod tests {
         builder
     }
 
+    //Datos para la función inicializadora
     fn sample_token_metadata() -> TokenMetadata {
         TokenMetadata {
             title: Some(" ".into()),
@@ -325,6 +326,7 @@ mod tests {
             price: None        }
     }
 
+    //Test de la función inicializadora
     #[test]
     fn test_new() {
         let mut context = get_context(accounts(1));
@@ -334,6 +336,7 @@ mod tests {
         assert_eq!(contract.nft_token("1".to_string()), None);
     }
 
+    //Verificación del contrato
     #[test]
     #[should_panic(expected = "El contrato no está inicializado")]
     fn test_default() {
@@ -342,6 +345,7 @@ mod tests {
         let _contract = Contract::default();
     }
 
+    //Verificación de la creación de un servicio
     #[test]
     fn test_mint() {
         let mut context = get_context(accounts(0));
@@ -362,6 +366,7 @@ mod tests {
         assert_eq!(token.approved_account_ids.unwrap(), HashMap::new());
     }
 
+    //Prueba de una transferencia entre profesional y cliente
     #[test]
     fn test_transfer() {
         let mut context = get_context(accounts(0));
@@ -399,6 +404,7 @@ mod tests {
         }
     }
 
+    //Verificación de servicio a la venta
     #[test]
     fn test_approve() {
         let mut context = get_context(accounts(0));
@@ -430,6 +436,7 @@ mod tests {
         assert!(contract.nft_is_approved(token_id.clone(), accounts(1), Some(1)));
     }
 
+    //Prueba de quitar un servicio por parte del profesional
     #[test]
     fn test_revoke() {
         let mut context = get_context(accounts(0));
@@ -468,41 +475,4 @@ mod tests {
         assert!(!contract.nft_is_approved(token_id.clone(), accounts(1), None));
     }
 
-    #[test]
-    fn test_revoke_all() {
-        let mut context = get_context(accounts(0));
-        testing_env!(context.build());
-        let mut contract = Contract::new_default_meta(accounts(0).into());
-
-        testing_env!(context
-            .storage_usage(env::storage_usage())
-            .attached_deposit(MINT_STORAGE_COST)
-            .predecessor_account_id(accounts(0))
-            .build());
-        let token_id = "0".to_string();
-        contract.nft_mint(token_id.clone(), accounts(0), sample_token_metadata());
-
-        // Servicio en venta
-        testing_env!(context
-            .storage_usage(env::storage_usage())
-            .attached_deposit(150000000000000000000)
-            .predecessor_account_id(accounts(0))
-            .build());
-        contract.nft_approve(token_id.clone(), accounts(1), None);
-
-        // Servicio fuera de venta
-        testing_env!(context
-            .storage_usage(env::storage_usage())
-            .attached_deposit(1)
-            .predecessor_account_id(accounts(0))
-            .build());
-        contract.nft_revoke_all(token_id.clone());
-        testing_env!(context
-            .storage_usage(env::storage_usage())
-            .account_balance(env::account_balance())
-            .is_view(true)
-            .attached_deposit(0)
-            .build());
-        assert!(!contract.nft_is_approved(token_id.clone(), accounts(1), Some(1)));
-    }
 }
