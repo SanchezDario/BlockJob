@@ -1,0 +1,18 @@
+/home/dario/BC/NEAR/BlockJobs/near-contract-standards-3.2.0/target/rls/debug/deps/typenum-82d63ee532cb3a87.rmeta: /home/dario/.cargo/registry/src/github.com-1ecc6299db9ec823/typenum-1.13.0/src/lib.rs /home/dario/.cargo/registry/src/github.com-1ecc6299db9ec823/typenum-1.13.0/src/bit.rs /home/dario/.cargo/registry/src/github.com-1ecc6299db9ec823/typenum-1.13.0/src/int.rs /home/dario/.cargo/registry/src/github.com-1ecc6299db9ec823/typenum-1.13.0/src/marker_traits.rs /home/dario/.cargo/registry/src/github.com-1ecc6299db9ec823/typenum-1.13.0/src/operator_aliases.rs /home/dario/.cargo/registry/src/github.com-1ecc6299db9ec823/typenum-1.13.0/src/private.rs /home/dario/.cargo/registry/src/github.com-1ecc6299db9ec823/typenum-1.13.0/src/type_operators.rs /home/dario/.cargo/registry/src/github.com-1ecc6299db9ec823/typenum-1.13.0/src/uint.rs /home/dario/.cargo/registry/src/github.com-1ecc6299db9ec823/typenum-1.13.0/src/array.rs /home/dario/BC/NEAR/BlockJobs/near-contract-standards-3.2.0/target/rls/debug/build/typenum-095289aa5bcf3e1e/out/op.rs /home/dario/BC/NEAR/BlockJobs/near-contract-standards-3.2.0/target/rls/debug/build/typenum-095289aa5bcf3e1e/out/consts.rs
+
+/home/dario/BC/NEAR/BlockJobs/near-contract-standards-3.2.0/target/rls/debug/deps/typenum-82d63ee532cb3a87.d: /home/dario/.cargo/registry/src/github.com-1ecc6299db9ec823/typenum-1.13.0/src/lib.rs /home/dario/.cargo/registry/src/github.com-1ecc6299db9ec823/typenum-1.13.0/src/bit.rs /home/dario/.cargo/registry/src/github.com-1ecc6299db9ec823/typenum-1.13.0/src/int.rs /home/dario/.cargo/registry/src/github.com-1ecc6299db9ec823/typenum-1.13.0/src/marker_traits.rs /home/dario/.cargo/registry/src/github.com-1ecc6299db9ec823/typenum-1.13.0/src/operator_aliases.rs /home/dario/.cargo/registry/src/github.com-1ecc6299db9ec823/typenum-1.13.0/src/private.rs /home/dario/.cargo/registry/src/github.com-1ecc6299db9ec823/typenum-1.13.0/src/type_operators.rs /home/dario/.cargo/registry/src/github.com-1ecc6299db9ec823/typenum-1.13.0/src/uint.rs /home/dario/.cargo/registry/src/github.com-1ecc6299db9ec823/typenum-1.13.0/src/array.rs /home/dario/BC/NEAR/BlockJobs/near-contract-standards-3.2.0/target/rls/debug/build/typenum-095289aa5bcf3e1e/out/op.rs /home/dario/BC/NEAR/BlockJobs/near-contract-standards-3.2.0/target/rls/debug/build/typenum-095289aa5bcf3e1e/out/consts.rs
+
+/home/dario/.cargo/registry/src/github.com-1ecc6299db9ec823/typenum-1.13.0/src/lib.rs:
+/home/dario/.cargo/registry/src/github.com-1ecc6299db9ec823/typenum-1.13.0/src/bit.rs:
+/home/dario/.cargo/registry/src/github.com-1ecc6299db9ec823/typenum-1.13.0/src/int.rs:
+/home/dario/.cargo/registry/src/github.com-1ecc6299db9ec823/typenum-1.13.0/src/marker_traits.rs:
+/home/dario/.cargo/registry/src/github.com-1ecc6299db9ec823/typenum-1.13.0/src/operator_aliases.rs:
+/home/dario/.cargo/registry/src/github.com-1ecc6299db9ec823/typenum-1.13.0/src/private.rs:
+/home/dario/.cargo/registry/src/github.com-1ecc6299db9ec823/typenum-1.13.0/src/type_operators.rs:
+/home/dario/.cargo/registry/src/github.com-1ecc6299db9ec823/typenum-1.13.0/src/uint.rs:
+/home/dario/.cargo/registry/src/github.com-1ecc6299db9ec823/typenum-1.13.0/src/array.rs:
+/home/dario/BC/NEAR/BlockJobs/near-contract-standards-3.2.0/target/rls/debug/build/typenum-095289aa5bcf3e1e/out/op.rs:
+/home/dario/BC/NEAR/BlockJobs/near-contract-standards-3.2.0/target/rls/debug/build/typenum-095289aa5bcf3e1e/out/consts.rs:
+
+# env-dep:TYPENUM_BUILD_CONSTS=/home/dario/BC/NEAR/BlockJobs/near-contract-standards-3.2.0/target/rls/debug/build/typenum-095289aa5bcf3e1e/out/consts.rs
+# env-dep:TYPENUM_BUILD_OP=/home/dario/BC/NEAR/BlockJobs/near-contract-standards-3.2.0/target/rls/debug/build/typenum-095289aa5bcf3e1e/out/op.rs

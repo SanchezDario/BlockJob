@@ -33,7 +33,6 @@ pub struct Contract {
     metadata: LazyOption<NFTContractMetadata>,
 }
 
-#[near_bindgen]
 // Estructura que almacena usuarios a nivel global
 pub struct Users {
     nickname: String,
@@ -228,8 +227,8 @@ impl Contract {
     }
 }
 
-#[near_bindgen]
-impl Users {
+//#[near_bindgen]
+impl Users{
     //Agrega nuevos profesionales
     pub fn new_professional(&mut self, account_id: ValidAccountId, 
         category: String,

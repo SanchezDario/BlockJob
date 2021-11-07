@@ -15,7 +15,7 @@ Implementación:
 
 Para ejecutar este proyecto localmente, debe seguir los siguientes pasos:
 
-1: Prerrequisitos
+Paso 1: Prerrequisitos
 ------------------------------
 
 1. Asegúrese de haber instalado [Node.js] ≥ 12 (recomendamos usar [nvm])
@@ -30,70 +30,63 @@ Para ejecutar este proyecto localmente, debe seguir los siguientes pasos:
 
     yarn install --global near-cli
 
-2: Configuración de NEAR CLI
+Paso 2: Configuración de NEAR CLI
 -------------------------------
 
 Configure su near-cli para autorizar su cuenta de prueba creada recientemente:
 
     near login
 
-3: Cree y realice una implementación de desarrollo de contrato inteligente
---------------------------------
-
-Cree el código del contrato inteligente de NEARLancers e implemente el servidor de desarrollo local con : `yarn build` (consulte` package.json` para obtener una lista completa de `scripts` que puede ejecutar con` yarn`). Para desplegar el contrato generado con `yarn buil` en testnet [https://wallet.testnet.near.org/], ejecutar el comando `yarn deploy` el cual nos regresará el id del contrato desplegado el cuál usaremos para ejecutar cada uno de los métodos que contiene el contrato. 
-Para simplificar el procesor, guade este id en una variable con el siguiente comando:
-ID=`inserte_aqui_el_id_correspondiente`
+Para simplificar el proceso, guarde este id en una variable con el siguiente comando:
+ID='cuenta.testnet'
+ID2='otra_cuenta.testnet'
 Puede verificar con el comando: echo $ID
 
-📑 Explorando los métodos de contrato inteligente NEARLancers
+Paso 3: Implementación del contrato
+--------------------------------
+
+Clone el código de BlockJobs e implemente el servidor de desarrollo local con : `yarn build` (consulte` package.json` para obtener una lista completa de `scripts` que puede ejecutar con` yarn`). 
+Para compilar y desplegar el contrato generado con `yarn buil` en testnet [https://wallet.testnet.near.org/], ejecutar los siguientes comandos:
+
+    cargo build --target wasm32-unknown-unknown
+
+    near deploy $ID --wasmFile target/wasm32-unknown-unknown/debug/professional_services_marketplace.wasm
+
+
+📑 Explorando los métodos del contrato
 ==================
 
 Los siguientes comandos le permiten interactuar con los métodos del contrato inteligente utilizando NEAR CLI.
 
-Comando para crear usuario: 
+Comando para inicializar el contrato con la metadata por default: 
 --------------------------------------------
-    near call $ID registrarUsuario '{ "idCuenta":"string", "nombre":"string", "telefono":"string", "correo":"string", "password":"string"}' --account-id <your test account>
+    near call $ID new_default_meta '{"owner_id": "'$ID'" }' --accountId $ID
 
-Comando para consultar todos los usuarios:
+Comando para poner a la venta un servicio:
 --------------------------------------------
-    near view $ID consultarUsuarios
+    near call $ID nft_mint '{"token_id": "0", "receiver_id": "'$ID'", "token_metadata": {}}' --accountId $ID --amount 1
 
-Comando para consultar un usuario por id:
+Comando para adquirir un servicio:
 --------------------------------------------
-    near view $ID consultarUsuario '{"idCuenta":"cuenta.testnet"}'
+    near call $ID buy_nft '{"token_id": "0"}' --accountId $ID2 --gas 300000000000000
 
-
-Comando para guardar un servicio:
+Comando para quitar de venta un servicio:
 --------------------------------------------
-    near call $ID registrarServicio '{ "nombre":"string", "descripción":"string", "costo":"u64", "idUsuario":"string"}' --account-id <your test account>
+    near call $ID delete_nft '{"token_id": "0"}' --accountId $ID --gas 300000000000000
 
-Comando para consultar todos los servicios:
+Comando para consultar todos los servicios a la venta de un usuario:
 --------------------------------------------
-    near view $ID consultarServicios
+    near call $ID tokens_of '{"account_id": "'$ID'", "from_index": "0", "limit": 10}' --accountId $ID
 
-Comando para consultar todos los servicios de un usuario:
+Comando para agregar un nuevo profesional:
 --------------------------------------------
-    near view $ID consultarServiciosUsuario '{"idUsuario":"string"}'
+    near call $ID new_professional '{"account_id": "'$ID'", "category": "dev", "degree": true, "nickname": "user123"}' --accountId $ID
 
-Comando para consultar un servicio por su id:
+Comando para agregar un nuevo empleador:
 --------------------------------------------
-    near view $ID consultarServicio '{"idServicio":"string"}'
+    near call $ID new_employer '{"account_id": "'$ID'", "category": "dev"}' --accountId $ID
 
-Comando para agregar un comentario a un servicio:
---------------------------------------------
-    near call $ID agregarComentario '{"idServicio":"u64", "idUsuario":"string", "comentario":"string"}' --account-id <your test account>
 
-Comando para consultar todos los comentarios de un servicio:
---------------------------------------------
-    near view $ID consultarComentarios '{"idServicio":"u64"}'
-
-Comando para agregar una valoracion a un servicio:
---------------------------------------------
-    near call $ID agregarValoracion '{"idServicio":"u64", "idUsuario":"string", "valoracion":"u64"}' --account-id <your test account>
-
-Comando para consultar todas las valoraciones de un servicio:
---------------------------------------------
-    near view $ID consultarValoracion '{"idServicio":"u64"}'
 
 Pruebas unitarias
 --------------------------------
@@ -101,17 +94,14 @@ Dentro de la carpeta contract, utilice el siguiente comando para ejecutar las pr
 
     cargo test -- --nocapture
 
+
 Interfáz gráfica de la aplicación
 --------------------------------
     https://www.figma.com/file/r8cMu2HEm6FDMDVYKo2bc5/MarketPlace?node-id=0%3A1
 
 
 
-  [React]: https://reactjs.org/
   [create-near-app]: https://github.com/near/create-near-app
-  [Node.js]: https://nodejs.org/en/download/package-manager/
-  [jest]: https://jestjs.io/
   [NEAR accounts]: https://docs.near.org/docs/concepts/account
   [NEAR Wallet]: https://wallet.testnet.near.org/
   [near-cli]: https://github.com/near/near-cli
-  [gh-pages]: https://github.com/tschaub/gh-pages

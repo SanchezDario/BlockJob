@@ -1,0 +1,2 @@
+cargo:rustc-env=TYPENUM_BUILD_CONSTS=/home/dario/BC/NEAR/BlockJobs/near-contract-standards-3.2.0/target/rls/debug/build/typenum-095289aa5bcf3e1e/out/consts.rs
+cargo:rustc-env=TYPENUM_BUILD_OP=/home/dario/BC/NEAR/BlockJobs/near-contract-standards-3.2.0/target/rls/debug/build/typenum-095289aa5bcf3e1e/out/op.rs

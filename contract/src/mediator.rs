@@ -3,8 +3,8 @@ use near_sdk::{env, near_bindgen};
 use near_sdk::serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 
-#[global_allocator]
-static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
+//#[global_allocator]
+//static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
 
 #[derive(Serialize, Deserialize, Clone, BorshDeserialize, BorshSerialize)]
 #[serde(crate = "near_sdk::serde")]
