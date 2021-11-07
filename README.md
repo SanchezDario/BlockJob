@@ -7,13 +7,19 @@ BlockJob es una plataforma pensada en fomentar el trabajo online, el cual repres
 Para ejemplificar supongamos que Alice es una programadora que pasa un KYC para registrarse en BlockJob y Juan es un emprendedor que requiere de un sitio web, por lo cual contrata a Alice, si está conforme con el trabajo no apelará y al terminar el plazo simplemente Alice recibirá los fondos correspondientes, luego Juan podrá dar una valoración en el sitio y ambos irán obteniendo un buen historial dentro de la plataforma. Pero en caso de no estar conforme con el trabajo, ya se que no cumplió sus espectativas o simplemente no fue realizado por Alice, Juan podrá apelar y los fondos quedarán bloqueados hasta realizarse una votación según la condiciones que se explicaron anteriormente, si dicha votación favorece a Juan, el recuperará sus fondos menos una comisión dada como incentivo al jurado, la cual se justifica económicamente por el hecho de tener cierta garantía de la realización del trabajo; caso contrario, será Alice quien reciba el pago, ahora sí de forma íntegra y el incentivo al jurado será otorgado a partir de un fondo propio de la plataforma.
 Inicialmente BlockJob tomará una estrategia de nicho, centrándose en la nutrición, área con gran demanda de servicios digitales y donde las mediaciones esperamos sean realmente reducidas, luego se expandirá a la programación, donde efectivamente el mayor contratiempo al contratar online suele darse por disputas ante los trabajos realizado y las condiciones exigidas por los clientes, por lo cual las mediaciones jugarán un papel clave. Posteriormente cualquier servicio con suficiente demanda será incluído en la plataforma.
 
-* Aplicación creada con `yarn create near-app --contract=rust --frontend=react`
+
+Interfáz gráfica de la aplicación
+--------------------------------
+    https://www.figma.com/file/r8cMu2HEm6FDMDVYKo2bc5/MarketPlace?node-id=0%3A1
+
 
 
 Implementación:
 ================
 
-Para ejecutar este proyecto localmente, debe seguir los siguientes pasos:
+* Aplicación creada con `yarn create near-app --contract=rust --frontend=react`
+
+* Para ejecutar este proyecto localmente, debe seguir los siguientes pasos:
 
 Paso 1: Prerrequisitos
 ------------------------------
@@ -93,11 +99,6 @@ Pruebas unitarias
 Dentro de la carpeta contract, utilice el siguiente comando para ejecutar las pruebas:
 
     cargo test -- --nocapture
-
-
-Interfáz gráfica de la aplicación
---------------------------------
-    https://www.figma.com/file/r8cMu2HEm6FDMDVYKo2bc5/MarketPlace?node-id=0%3A1
 
 
 
