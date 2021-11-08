@@ -1,3 +1,9 @@
+/* Contrato encargado de bloquear los fondos y resolver las disputas según votación
+ * Actualmente si bien está funcional, no está integrado al contrato principal, ya que
+ * primeramente se deb dividir el contrato lib.rs y agragar funcionalidades con las
+ * que este contrato trabajará
+ */
+
 use near_sdk::borsh::{self, BorshDeserialize, BorshSerialize};
 use near_sdk::{env, near_bindgen};
 use near_sdk::serde::{Deserialize, Serialize};
@@ -46,9 +52,9 @@ pub struct VotingStats {
 #[near_bindgen]
 #[derive(Default, BorshDeserialize, BorshSerialize)]
 pub struct Voting {
-    // Map of poll id to voting options.
+    // Mapa para almacenar votaciones según ID
     polls: HashMap<String, VotingOptions>,
-    // Map of poll id to voting results.
+    // Mapa para almacenar resultados según ID
     results: HashMap<String, VotingResults>,
 }
 
@@ -64,13 +70,13 @@ impl Voting {
             )
             .as_bytes(),
         );
-        // Now we need to find a contract to vote for.
+        // Busca la votación
         match self.results.get_mut(&poll_id) {
             Some(results) => {
                 match results.voted.get(&voter_contract) {
                     Some(_) => {
                         env::log(
-                            format!("{} already voted in {}", voter_contract, poll_id).as_bytes(),
+                            format!("{} ya se votó en {}", voter_contract, poll_id).as_bytes(),
                         );
                         return false;
                     }
@@ -94,7 +100,7 @@ impl Voting {
                 return true;
             }
             None => {
-                env::log(format!("no poll known for {}", poll_id).as_bytes());
+                env::log(format!("Sin votación pendiente en {}", poll_id).as_bytes());
                 return false;
             }
         };
@@ -103,7 +109,7 @@ impl Voting {
     pub fn create_poll(&mut self, question: String, variants: HashMap<String, String>) -> String {
         env::log(
             format!(
-                "create_poll for {} currently have {} polls",
+                "create_poll para {} tiene actualmente {} polls",
                 question,
                 self.polls.len()
             )
@@ -143,7 +149,7 @@ impl Voting {
         match self.polls.get(&poll_id) {
             Some(options) => Some(options.clone()),
             None => {
-                env::log(format!("Unknown voting {}", poll_id).as_bytes());
+                env::log(format!("No se reconoce ID del votante {}", poll_id).as_bytes());
                 None
             }
         }
@@ -195,6 +201,7 @@ mod tests {
         }
     }
 
+    // Prueba que no exista ya el ID de la disputa 
     #[test]
     fn nonexisting_poll() {
         let context = get_context(vec![], false);
@@ -210,10 +217,10 @@ mod tests {
         testing_env!(context);
         let mut contract = Voting::default();
         let poll = contract.create_poll(
-            "To be or not to be?".to_string(),
+            "Es o no?".to_string(),
             [
-                ("v1".to_string(), "To be".to_string()),
-                ("v2".to_string(), "Not to be".to_string()),
+                ("v1".to_string(), "Es".to_string()),
+                ("v2".to_string(), "No es".to_string()),
             ]
             .iter()
             .cloned()
@@ -221,6 +228,6 @@ mod tests {
         );
         let options = contract.show_poll(poll);
         assert_eq!(false, options.is_none());
-        assert_eq!("To be or not to be?".to_string(), options.unwrap().question);
+        assert_eq!("Es o no?".to_string(), options.unwrap().question);
     }
 }
